@@ -1,0 +1,59 @@
+﻿@page
+@model MyWebApp.ContactUsModel
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<h1>Contact Us</h1>
+<p>Please fill in the following form to send your message.</p>
+
+@if  (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-info">
+        @Model.Message
+    </div>
+}
+<form asp-page="ContactUs" method="post">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label asp-for="ContactForm.Firstname"></label>
+                <input type="text" asp-for="ContactForm.Firstname" class="form-control" placeholder="Enter your name" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ContactForm.Lastname"></label>
+                <input type="text" asp-for="ContactForm.Lastname" class="form-control" placeholder="Enter your lastname" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ContactForm.EmailAddress"></label>
+                <input type="email" asp-for="ContactForm.EmailAddress" class="form-control" placeholder="Enter your e-mail" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ContactForm.FeedbackType">
+                </label>
+                    <select class="form-control" asp-for="ContactForm.FeedbackType">
+                        @foreach (var ft in Model.ContactForm.FeedbackTypes)
+                        {
+                            <option>@ft</option>
+                        }
+                    </select>
+                
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ContactForm.Comments"></label>
+                <textarea asp-for="ContactForm.Comments"
+                          class="form-control"
+                          rows="3"
+                          placeholder="Enter your comments">
+                </textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit message</button>
+        </div>
+    </div>
+
+</form>
