@@ -42,6 +42,7 @@ namespace MyWebApp
         public void OnGet(int id)
         {
             InitializeInvoice(id);
+           // SelectedItems = new List<Invoice.SelectedItem>();
         }
 
         private void InitializeInvoice(int id)
@@ -61,7 +62,7 @@ namespace MyWebApp
                 InvoiceNumber = Id,
             };
 
-            SelectedItems = new List<Invoice.SelectedItem>();
+            
         }
         public async Task<IActionResult> OnPostAsync(int id)
         {
